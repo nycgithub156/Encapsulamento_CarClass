@@ -163,6 +163,6 @@ class UserClass {
     }
 
     public void infoUser() {
-        
+        System.out.println("");
     }
 }
