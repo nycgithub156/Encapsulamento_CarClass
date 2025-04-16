@@ -163,6 +163,42 @@ class UserClass {
     }
 
     public void infoUser() {
-        System.out.println("");
+        System.out.println("=====User Info=====");
+        System.out.println("[ID:" + id + "]");
+        System.out.println("Name: " + name);
+        System.out.println("-- Book Borrowed Info --");
+        if (this.borrowedBook != null) {
+            System.out.println("Title: " + borrowedBook.getTitle());
+            System.out.println("Author: " + borrowedBook.getAuthor());
+            System.out.println("ISBN: " + borrowedBook.getIsbn());
+            System.out.println("Status: Borrowed");
+        } else {
+            System.out.println("No books currently borrowed");
+        }
+        System.out.println("====================");
+    }
+}
+
+public class librarySystem {
+    public static void main(String[] args) {
+        BookClass stBook = new BookClass("1236477", "A metamorfose", "Franz Kafka");
+        BookClass ndBook = new BookClass("4467810", "Memórias póstumas de Brás Cubas", "Machado de Assis");
+        BookClass rdBook = new BookClass("7893348", "Animal Farm", "George Orwell", 1945);
+
+        UserClass stUser = new UserClass("300", "Jorge Henrique Nogueira Santos");
+        UserClass ndUser = new UserClass("301", "Carlos James August");
+
+        stBook.infoBook();
+        ndBook.infoBook();
+        rdBook.infoBook();
+
+        stUser.infoUser();
+        stUser.borrow(ndBook);
+        stUser.infoUser();
+
+        ndUser.infoUser();
+        ndUser.borrow(stBook);
+        ndUser.infoUser();
+
     }
 }
