@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// Verifica se 'a' é coprimo com 95 (não divisível por 5 ou 19)
+// Verifica se 'a' tem inverso (coprimo com 95)
 bool isCoprime(int a) {
     return (a % 5 != 0) && (a % 19 != 0);
 }
@@ -15,15 +15,6 @@ int modInverse(int a) {
         }
     }
     return -1; // Inverso não existe
-}
-
-// Cifra: E(x) = (a * (x - 32) + b) mod 95 + 32
-void encrypt(char *text, int a, int b) {
-    for (int i = 0; text[i] != '\0'; i++) {
-        int x = (int)text[i] - 32; // Mapeia para 0-94
-        int y = (a * x + b) % 95;
-        text[i] = (char)(y + 32); // Volta para 32-126
-    }
 }
 
 // Decifra: D(y) = a⁻¹ * (y - 32 - b) mod 95 + 32
@@ -43,17 +34,14 @@ void decrypt(char *ciphertext, int a, int b) {
 }
 
 int main() {
-    int a = 7;  // Coprimo com 95 (não múltiplo de 5 ou 19)
-    int b = 10; // Qualquer valor entre 0 e 94
+    int a = 7;   // Deve ser o mesmo 'a' usado na cifra
+    int b = 10;  // Deve ser o mesmo 'b' usado na cifra
 
-    char mensagem[] = "ttt";
-    printf("Original: %s\n", mensagem);
+    char mensagem_cifrada[] = "<<<"; // Substitua pela mensagem cifrada
+    printf("Cifrada:  %s\n", mensagem_cifrada);
 
-    encrypt(mensagem, a, b);
-    printf("Cifrada:  %s\n", mensagem);
-
-    decrypt(mensagem, a, b);
-    printf("Decifrada: %s\n", mensagem);
+    decrypt(mensagem_cifrada, a, b);
+    printf("Decifrada: %s\n", mensagem_cifrada);
 
     return 0;
 }
